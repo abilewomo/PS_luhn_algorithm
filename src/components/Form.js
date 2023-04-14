@@ -3,7 +3,8 @@ import {useState, useEffect} from "react"
 
 export default function Form(){
     const [content, setContent] = useState("null");
-    const [message, setMessage] = useState("null");
+    const [message, setMessage] = useState("");
+    const [color, setColor] = useState("red");
     useEffect(() => {
       setMessage(validCard(content))
 
@@ -26,17 +27,23 @@ export default function Form(){
           for(let x=0; x<sum.length; x++){
               add += parseInt(sum[x])
           }
-         return (add%10===0)?  "Card is valid" :  "Card is invalid"
+          if(add%10===0){
+            setColor("green")
+              return "Card is valid"}
+            else{
+              setColor("red")
+              return "Card is invalid"
+            }
         }
       }
-      
+
     return(
         <div className="form">
             <input type="text" placeholder="Enter card number" onChange={(e) => {
             setContent(e.target.value);
           }} />
             
-            <p>{message}</p>
+            <p className={color}>{message}</p>
         </div>
     )
 }
