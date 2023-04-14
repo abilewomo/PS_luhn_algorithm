@@ -3,9 +3,11 @@ import {useState, useEffect} from "react"
 
 export default function Form(){
     const [content, setContent] = useState("null");
-    var message = ""
-   
-    
+    const [message, setMessage] = useState("null");
+    useEffect(() => {
+      setMessage(validCard(content))
+
+    }, [content]);
     function validCard(content){
         let cardNo = []
         if (content==="null") {
@@ -24,10 +26,10 @@ export default function Form(){
           for(let x=0; x<sum.length; x++){
               add += parseInt(sum[x])
           }
-         return (add%10===0)? message = "Card is valid" : message = "Card is invalid"
+         return (add%10===0)?  "Card is valid" :  "Card is invalid"
         }
       }
-      message= validCard(content)
+      
     return(
         <div className="form">
             <input type="text" placeholder="Enter card number" onChange={(e) => {
