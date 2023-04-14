@@ -37,9 +37,7 @@ code {
   flex-direction: column;
   font-size: 15pt;
   min-width: 50vw;
-  color: red;
+  color: #8b5d7d;
+  font-weight: bold;
 }
 
-.green{
-  color: green;
-}

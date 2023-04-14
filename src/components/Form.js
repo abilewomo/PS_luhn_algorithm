@@ -4,14 +4,8 @@ import {useState, useEffect} from "react"
 export default function Form(){
     const [content, setContent] = useState("null");
     var message = ""
-    var color="red"
-    // useEffect((content) => {
-    //   if(content===undefined || content==="null"){
-    //     message="he"
-    //   }else {
-    //     message ="hi"
-    //   }
-    // }, [content]);
+   
+    
     function validCard(content){
         let cardNo = []
         if (content==="null") {
@@ -30,16 +24,16 @@ export default function Form(){
           for(let x=0; x<sum.length; x++){
               add += parseInt(sum[x])
           }
-         (add%10===0)? message = "card is valid" : message = "card is invalid"
+         return (add%10===0)? message = "Card is valid" : message = "Card is invalid"
         }
       }
-
+      message= validCard(content)
     return(
         <div className="form">
             <input type="text" placeholder="Enter card number" onChange={(e) => {
             setContent(e.target.value);
           }} />
-            <button onClick={validCard(content)}>Submit</button>
+            
             <p>{message}</p>
         </div>
     )
