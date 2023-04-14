@@ -3,38 +3,39 @@ import {useState, useEffect} from "react"
 
 export default function Form(){
     const [content, setContent] = useState("null");
-    var message = "";
-
+    var message = ""
+    var color="red"
+    // useEffect((content) => {
+    //   if(content===undefined || content==="null"){
+    //     message="he"
+    //   }else {
+    //     message ="hi"
+    //   }
+    // }, [content]);
     function validCard(content){
         let cardNo = []
-        for(let i=0; i<content.length; i++){
-          cardNo.push(content[i])
-        }
-        console.log(cardNo)
-        cardNo = cardNo.reverse()
-        var sum =[]
-        for(let y=0; y<cardNo.length; y++){
-          
-          if(y%2!=0){
-            cardNo[y]  *= 2
-          }
-          sum += cardNo[y]
-        }
-       let add = 0
-        for(let x=0; x<sum.length; x++){
-            add += parseInt(sum[x])
-        }
-        if(add%10==0){
-          message = "card is valid"
+        if (content==="null") {
+          return
         }else{
-         message = "card is invalid"
+          for(let i=0; i<content.length; i++){
+            cardNo.push(content[i])
+          }
+          cardNo = cardNo.reverse()
+          var sum =[]
+          for(let  y=0;y<cardNo.length; y++){
+            if(y%2 !== 0) {cardNo[y] *= 2 }
+            sum += cardNo[y]
+          }
+         let add = 0
+          for(let x=0; x<sum.length; x++){
+              add += parseInt(sum[x])
+          }
+         (add%10===0)? message = "card is valid" : message = "card is invalid"
         }
-        
-        
       }
 
     return(
-        <div>
+        <div className="form">
             <input type="text" placeholder="Enter card number" onChange={(e) => {
             setContent(e.target.value);
           }} />

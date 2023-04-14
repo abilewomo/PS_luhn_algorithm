@@ -6,8 +6,7 @@ function App() {
 
 <div className="App">
       <Form />
-      <p></p>
-    </div>
+  </div>
   );
 }
 
